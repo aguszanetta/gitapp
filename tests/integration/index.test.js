@@ -292,6 +292,29 @@ test('Editar movimiento inexistente por api', async () => {
     expect(req.status).toBe(404);
 });
 
+
+test('Eliminar movimiento por api', async () => {
+    const movementData = {
+        date: '13/04/2021',
+        amount: 300000.0,
+        type: MovementType.INCOME,
+        category: 'Sueldo',
+    };
+
+    // Creamos el movimiento
+    const movement = await MovementModel.create(movementData);
+
+    const URL = ${baseURL}/movements/${movement.id};
+    const req = await fetch(URL, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    expect(req.status).toBe(200);
+});
+
+  
 test('Revisamos que aparezca primero el movimiento mas cercano a la fecha ', async () => {
     const firstMovementData = {
         date: '04/01/2021',

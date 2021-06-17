@@ -60,7 +60,7 @@ window.onCancel = function () {
  * Elimina un movimiento
  **/
 window.onRemove = async function () {
-    await movementService.update(state.movement);
+    await movementService.remove(state.movement);
     state.movement = {};
     render('movement-form.html', state, refs.form);
 };
@@ -69,7 +69,15 @@ window.onRemove = async function () {
  * Guarda un movimiento
  **/
 window.onSave = async function (e) {
+
     e.stopPropagation();
+
+    const form = document.querySelector('form');
+
+    if (!form.checkValidity()){
+        return ;
+    }
+
     e.preventDefault();
     const movement = getMovementData();
 

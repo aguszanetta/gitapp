@@ -69,16 +69,14 @@ const getAllMovements = (limit, skip, type) => {
  *
  */
 const createMovement = ({
-    date = '01/01/2021',
+    date = '',
     amount = 0.0,
     type = MovementType.EXPENSE,
     category = '',
+    description = '',
 } = {}) => {
 
-
-
-    date = date;
-    return Movement.create({ date, amount, type, category });
+    return Movement.create({ date, amount, type, category, description });
 
 };
 

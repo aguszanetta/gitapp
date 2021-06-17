@@ -25,30 +25,32 @@ async function update(movement) {
 }
 
 async function create(movement) {
-    const resp = await fetch(`${BASE_URL}/movements`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(movement),
-    });
-
-    console.log(resp);
-
-    if(resp.status == 201){
-    	alert('Se creo correctamente');
-    } else {
-    	alert('Error del Servidor');
-    }
-
-    return resp.json();
+	const resp = await fetch(`${BASE_URL}/movements`, {
+	method: 'POST',
+	headers: {
+	'Content-Type': 'application/json'
+	},
+	body: JSON.stringify(movement),
+	});
+	console.log(resp);
+	if(resp.status == 201){
+		alert('Se creo correctamente');
+	}else{
+		alert('Error del Servidor');
+	}
+	return resp.json();
 }
 
 async function remove(movement) {
-    console.log('delete:', movement);
-    return new Promise(resolve => {
-        resolve();
+    console.log('delete:', movement.id);
+    const resp = await fetch(`${BASE_URL}/movements/${movement.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },        
     });
+
+    return resp.json();
 }
 
 export default {
