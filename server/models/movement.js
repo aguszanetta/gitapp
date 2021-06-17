@@ -55,6 +55,7 @@ const getAllMovements = (limit, skip, type) => {
     return Movement.findAndCountAll({
         limit: limit,
         offset: skip,
+        order: [['date','DESC']],  
         attributes: {
             exclude: ['createdAt', 'updatedAt'],
         },
