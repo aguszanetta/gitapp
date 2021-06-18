@@ -70,6 +70,12 @@ window.onRemove = async function () {
  **/
 window.onSave = async function (e) {
 
+    const monto = document.querySelector('#monto');
+
+    if (monto.value<0){
+        alert('Ingrese numeros mayores o iguales a 0');
+    }else{
+
     e.stopPropagation();
 
     const form = document.querySelector('form');
@@ -89,6 +95,7 @@ window.onSave = async function (e) {
 
     state.movement = {};
     render('movement-form.html', state, refs.form);
-};
+}
+}
 
 init();

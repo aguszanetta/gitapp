@@ -45,4 +45,20 @@ describe('Ingresos Test', () => {
         });
 
     });
+
+    it('Deberia evitar que se ingrese numeros negativos', (done) => {
+        cy.visit('/income');
+
+        cy.get('input[name=date]').type('2021-04-26');
+        cy.get('input[name=category]').type('Bono');
+        cy.get('input[name=amount]').type(-'1000');
+        cy.contains('Guardar').click();
+
+        cy.on('window:alert', (str) => {
+        expect(str).to.equal('Ingrese numeros mayores o iguales a 0');
+
+    done();
+        });
+
+    });
 });
