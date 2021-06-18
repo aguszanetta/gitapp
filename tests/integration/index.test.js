@@ -49,13 +49,13 @@ test('Obtener movimientos por api', async () => {
 
 test('Buscar movimientos por api con un resultado', async () => {
     const firstMovementData = {
-        date: '01/01/2021',
+        date: '04/01/2021',
         amount: 1000.0,
         category: 'Supermercado',
     };
 
     const secondMovementData = {
-        date: '04/01/2021',
+        date: '01/01/2021',
         amount: 50000.0,
         type: MovementType.INCOME,
         category: 'Sueldo',
@@ -76,13 +76,13 @@ test('Buscar movimientos por api con un resultado', async () => {
 
 test('Buscar movimientos por api con offset', async () => {
     const firstMovementData = {
-        date: '01/01/2021',
+        date: '04/01/2021',
         amount: 1000.0,
         category: 'Supermercado',
     };
 
     const secondMovementData = {
-        date: '04/01/2021',
+        date: '01/01/2021',
         amount: 50000.0,
         type: MovementType.INCOME,
         category: 'Sueldo',
@@ -312,4 +312,32 @@ test('Eliminar movimiento por api', async () => {
         },
     });
     expect(req.status).toBe(200);
+});
+
+test('Validarque aparezca primero el movimiento mas proximo a la fecha actual ', async () => {
+    const firstMovementData = {
+        date: '04/01/2021',
+        amount: 1000.0,
+        category: 'Supermercado',
+    };
+
+    const secondMovementData = {
+        date: '04/06/2021',
+        amount: 50000.0,
+        type: MovementType.INCOME,
+        category: 'Sueldo',
+    };
+
+    // Creamos los movimientos
+    await MovementModel.create(firstMovementData);
+    const secondMovement = await MovementModel.create(secondMovementData);
+
+    //Buscamos en la api los movimientos cargados
+    const URL = `${baseURL}/movements`;
+    const req = await fetch(URL);
+    const body = await req.json();
+
+    //corroboramos que el de la fecha mas reciente este primero
+    //sabemos que el secondMovement es el de al fecha mas nueva
+    expect(secondMovement.id).toBe(body.movements[0].id);
 });
