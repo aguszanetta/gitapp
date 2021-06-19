@@ -18,6 +18,14 @@
                 <p class="has-text-weight-light is-size-7">
                     {{ movement.description }}
                 </p>
+                <p class="has-text-weight-light is-size-7">
+                    <!-- Agrego el condicional para que los movimiento ya cargados no queden con el texto recurrente vacio-->
+                    {% if movement.recurrente == '' %}
+                        Recurrente: No
+                    {% else %}
+                        Recurrente: {{ movement.recurrente }}
+                    {% endif %}
+                </p>
             </div>
         </div>
     </div>
