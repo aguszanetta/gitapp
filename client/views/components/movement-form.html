@@ -63,6 +63,20 @@
         </div>
     </div>
 
+    <div class="field">
+        <label class="label">Recurrente Si/No *</label>
+        <div class="control">
+            <input
+                name="recurrente"
+                class="input"
+                type="text"
+                placeholder=""
+                value="{{ movement.recurrente if movement.recurrente }}"
+                required
+            />
+        </div>
+    </div>
+
     <div class="field is-grouped">
         <div class="control">
             <button
