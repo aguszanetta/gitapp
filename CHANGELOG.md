@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-06-19
+
+##Added
+
+- Agrega signos a ingresos y egresos
+- Agrega campo booleano en el modelo para saber si es recurrente
+- Agrega test de signos a ingresos y egresos
+- Agrega test de campo booleano
+- Agrega test de montos negativos
+- Agrega test de ultimos 5 movimientos
+
+##Fixed
+
+- Arregla formulario no permite recibir montos negativos
+- Se muestran los ultimos 5 movimientos en la lista de movimientos
+
 ## [1.1.0] - 2021-06-12
 
 ##Added
@@ -52,7 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Home UI with charts and last movements
 -   Incomes UI with last incomes
 
-[unreleased]: https://github.com/aguszanetta/gitapp/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/aguszanetta/gitapp/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/aguszanetta/gitapp/releases/tag/v1.2.0
 [1.1.0]: https://github.com/aguszanetta/gitapp/releases/tag/v1.1.0
 [1.0.1]: https://github.com/aguszanetta/gitapp/releases/tag/v1.0.1
 [1.0.0]: https://github.com/aguszanetta/gitapp/releases/tag/v1.0.0
