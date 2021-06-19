@@ -35,6 +35,21 @@ test('Verificar el campo descripcion', async () => {
     expect(movement.description).toBe(movementData.description);
 });
 
+test('Verificar el campo recurrente', async () => {
+    const movementData = {
+        date: '04/01/2021',
+        amount: 50000.0,
+        type: MovementType.INCOME,
+        category: 'Sueldo',
+        description: 'description',
+        recurrente: 'No',
+    };
+
+    // Creamos el movimiento
+    const movement = await MovementModel.create(movementData);
+    expect(movement.recurrente).toBe(movementData.recurrente);
+});
+
 test('Tomar la fecha enviada', async () => {
     const movementData = {
         date: '2020-05-01T03:00:00.000Z',
