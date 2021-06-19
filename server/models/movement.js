@@ -33,6 +33,10 @@ const Movement = db.define(
         description: {
             type: Sequelize.STRING,
             allowNull: true,
+        },
+        recurrente: {
+            type: Sequelize.BOOLEAN,
+            allowNull: true,
         }
     },
     { tableName: 'Movement' }
@@ -74,9 +78,10 @@ const createMovement = ({
     type = MovementType.EXPENSE,
     category = '',
     description = '',
+    recurrente = '',
 } = {}) => {
 
-    return Movement.create({ date, amount, type, category, description });
+    return Movement.create({ date, amount, type, category, description, recurrente });
 
 };
 
@@ -94,11 +99,12 @@ const updateMovement = (
         type = MovementType.EXPENSE,
         category = '',
         description = '',
+        recurrente = '',
     } = {}
 ) => {
     return Movement.findOne({ where: { id: id } }).then((movement) => {
         if (movement != null) {
-            return movement.update({ date, amount, type, category, description });
+            return movement.update({ date, amount, type, category, description, recurrente });
         }
         return null;
     });
